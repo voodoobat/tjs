@@ -13,7 +13,7 @@ import {
   genRanHex,
   getOjectsItersectVect,
   mouseEvent2Vect,
-  vect2ScenePos
+  vect2ScenePos,
 } from '@/assets/util'
 
 const { innerWidth, innerHeight } = window
