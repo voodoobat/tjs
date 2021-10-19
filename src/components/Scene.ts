@@ -17,9 +17,12 @@ const renderer = new WebGLRenderer()
 const scene = new Scene()
 const camera = new PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
 
-const cube = (color = 0x000, x = 0, y = 0, z = 0) => {
+const cube = (color = 0x000, x = 0, y = 0, z = 0, name?: string) => {
   const obj = new Mesh(new BoxGeometry(), new MeshPhongMaterial({ color }))
   obj.position.set(x, y, z)
+  if (name) {
+    obj.name = name
+  }
   return obj
 }
 
@@ -27,7 +30,7 @@ const light = new DirectionalLight(0xffffff, 1)
 light.position.set(-3, -3, 40)
 
 scene.add(cube(0x49599a, -2, 1))
-scene.add(cube(0x1d299a))
+scene.add(cube(0x1d299a, 0, 0, 0, 'cube'))
 scene.add(cube(0xf9599a, 2, -1))
 scene.add(light)
 camera.position.z = 5
@@ -50,8 +53,14 @@ window.addEventListener('click', (ev) => {
   } else {
     const objects = getOjectsItersectVect(mouseEvent2Vect(ev), scene, camera)
     if (!objects.length) {
+      const obj = scene.getObjectByName('cube')
       const { x, y } = vect2ScenePos(mouseEvent2Vect(ev), camera)
-      scene.add(cube(0x49889a, x, y))
+      const object = cube(0x49889a, x, y)
+      if (obj?.rotation) {
+        const { x, y, z } = obj.rotation
+        object.rotation.set(x, y, z)
+      }
+      scene.add(object)
       isDoubleClick = false
     }
   }
