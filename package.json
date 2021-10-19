@@ -8,7 +8,11 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/three": "^0.133.1",
     "core-js": "^3.6.5",
+    "three": "^0.133.1",
+    "three.interaction": "^0.2.3",
+    "threex.domevents": "^1.0.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {
