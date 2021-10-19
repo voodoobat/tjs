@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "serve ./dist",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@types/three": "^0.133.1",
     "core-js": "^3.6.5",
+    "serve": "^12.0.1",
     "three": "^0.133.1",
-    "three.interaction": "^0.2.3",
-    "threex.domevents": "^1.0.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {
