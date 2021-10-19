@@ -9,7 +9,12 @@ import {
   Object3D,
 } from 'three'
 
-import { getOjectsItersectVect, mouseEvent2Vect, vect2ScenePos } from '@/assets/util'
+import {
+  genRanHex,
+  getOjectsItersectVect,
+  mouseEvent2Vect,
+  vect2ScenePos
+} from '@/assets/util'
 
 const { innerWidth, innerHeight } = window
 
@@ -29,9 +34,9 @@ const cube = (color = 0x000, x = 0, y = 0, z = 0, name?: string) => {
 const light = new DirectionalLight(0xffffff, 1)
 light.position.set(-3, -3, 40)
 
-scene.add(cube(0x49599a, -2, 1))
-scene.add(cube(0x1d299a, 0, 0, 0, 'cube'))
-scene.add(cube(0xf9599a, 2, -1))
+scene.add(cube(genRanHex(), -2, 1))
+scene.add(cube(genRanHex(), 0, 0, 0, 'cube'))
+scene.add(cube(genRanHex(), 2, -1))
 scene.add(light)
 camera.position.z = 5
 
@@ -55,7 +60,7 @@ window.addEventListener('click', (ev) => {
     if (!objects.length) {
       const obj = scene.getObjectByName('cube')
       const { x, y } = vect2ScenePos(mouseEvent2Vect(ev), camera)
-      const object = cube(0x49889a, x, y)
+      const object = cube(genRanHex(), x, y)
       if (obj?.rotation) {
         const { x, y, z } = obj.rotation
         object.rotation.set(x, y, z)

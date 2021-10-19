@@ -20,3 +20,8 @@ export const getOjectsItersectVect = (vect: Vector2, scene: Scene, camera: Camer
   raycaster.setFromCamera(vect, camera)
   return raycaster.intersectObjects(scene.children)
 }
+
+export const genRanHex = (): number => {
+  const hex = [...Array(6)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
+  return Number(`0x${hex}`)
+}
